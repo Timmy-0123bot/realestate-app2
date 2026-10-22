@@ -1,0 +1,308 @@
+/* 全体の基本スタイル */
+:root {
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-border: #d1d5db;
+  --color-bg: #f3f4f6;
+  --color-surface: #ffffff;
+  --color-error: #dc2626;
+  --color-success: #16a34a;
+  font-family: system-ui, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 80px;
+  color: var(--color-muted);
+}
+
+/* ログイン・会員登録画面 */
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 32px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.auth-container h1 {
+  margin: 0 0 24px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.auth-form input {
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.auth-form input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -1px;
+}
+
+.error {
+  margin: 0;
+  color: var(--color-error);
+  font-size: 0.9rem;
+}
+
+.success {
+  margin: 0;
+  color: var(--color-success);
+  font-size: 0.9rem;
+}
+
+.auth-link {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-link a {
+  color: var(--color-primary);
+}
+
+/* 物件一覧画面 */
+.properties-page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-email {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.logout-button {
+  background: #4b5563;
+}
+
+.logout-button:hover:not(:disabled) {
+  background: #374151;
+}
+
+/* カード形式のグリッド表示 */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.property-card {
+  padding: 20px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.property-card h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.property-card .rent {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.property-card .rent span {
+  margin-left: 4px;
+  font-size: 0.85rem;
+  font-weight: normal;
+  color: var(--color-muted);
+}
+
+.property-card .area {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* 物件カードのタイトル行（物件名＋間取り） */
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-title h2 {
+  margin: 0;
+}
+
+.layout-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: var(--color-primary-hover);
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* カード下部の編集・削除ボタン */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.card-actions button {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.secondary-button {
+  background: #e5e7eb;
+  color: var(--color-text);
+}
+
+.secondary-button:hover:not(:disabled) {
+  background: #d1d5db;
+}
+
+.danger-button {
+  background: var(--color-error);
+}
+
+.danger-button:hover:not(:disabled) {
+  background: #b91c1c;
+}
+
+/* 一覧上部のツールバー・メッセージ */
+.toolbar {
+  margin-bottom: 16px;
+}
+
+.page-error {
+  margin-bottom: 16px;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 48px;
+  color: var(--color-muted);
+}
+
+/* 物件の登録・編集フォーム */
+.property-form {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.property-form h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.form-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.form-grid input {
+  padding: 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-grid input:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -1px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
