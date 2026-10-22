@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/useAuth'
+import AuthLayout from '../components/AuthLayout'
 
 // ログイン画面
 export default function LoginPage() {
@@ -30,8 +31,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="auth-container">
-      <h1>ログイン</h1>
+    <AuthLayout eyebrow="LOGIN" title="ログイン">
       <form onSubmit={handleSubmit} className="auth-form">
         <label>
           メールアドレス
@@ -61,6 +61,6 @@ export default function LoginPage() {
       <p className="auth-link">
         アカウントをお持ちでない方は <Link to="/signup">会員登録</Link>
       </p>
-    </div>
+    </AuthLayout>
   )
 }

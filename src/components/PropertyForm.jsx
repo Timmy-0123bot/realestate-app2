@@ -65,7 +65,7 @@ export default function PropertyForm({ initialValues, onSubmit, onCancel }) {
       </div>
       {error && <p className="error">{error}</p>}
       <div className="form-actions">
-        <button type="button" className="secondary-button" onClick={onCancel} disabled={submitting}>
+        <button type="button" className="ghost-button" onClick={onCancel} disabled={submitting}>
           キャンセル
         </button>
         <button type="submit" disabled={submitting}>

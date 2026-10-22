@@ -60,63 +60,80 @@ export default function PropertiesPage() {
   }
 
   return (
-    <div className="properties-page">
-      <header className="header">
-        <h1>物件一覧</h1>
-        <div className="header-right">
-          <span className="user-email">{user?.email}</span>
-          <button onClick={handleLogout} className="logout-button">
-            ログアウト
-          </button>
+    <div className="app-shell">
+      <header className="topbar">
+        <div className="topbar-inner">
+          <p className="brand">
+            不動産管理
+            <small>PROPERTY MANAGER</small>
+          </p>
+          <div className="header-right">
+            <span className="user-email">{user?.email}</span>
+            <button onClick={handleLogout} className="ghost-button">
+              ログアウト
+            </button>
+          </div>
         </div>
       </header>
 
-      {formTarget ? (
-        <PropertyForm
-          // key を変えることで、編集対象が切り替わった際にフォームの入力値を初期化する
-          key={formTarget === 'new' ? 'new' : formTarget.id}
-          initialValues={formTarget === 'new' ? undefined : formTarget}
-          onSubmit={handleSubmit}
-          onCancel={() => setFormTarget(null)}
-        />
-      ) : (
-        <div className="toolbar">
-          <button onClick={() => setFormTarget('new')}>＋ 物件を新規登録</button>
+      <main className="properties-page">
+        <div className="page-heading">
+          <div>
+            <p className="eyebrow">PROPERTIES</p>
+            <h1>物件一覧</h1>
+            {!loading && <p className="count">{properties.length} 件の物件</p>}
+          </div>
+          {!formTarget && (
+            <button onClick={() => setFormTarget('new')}>＋ 新規登録</button>
+          )}
         </div>
-      )}
 
-      {error && <p className="error page-error">{error}</p>}
+        {formTarget && (
+          <PropertyForm
+            // key を変えることで、編集対象が切り替わった際にフォームの入力値を初期化する
+            key={formTarget === 'new' ? 'new' : formTarget.id}
+            initialValues={formTarget === 'new' ? undefined : formTarget}
+            onSubmit={handleSubmit}
+            onCancel={() => setFormTarget(null)}
+          />
+        )}
 
-      {loading ? (
-        <p className="loading">読み込み中...</p>
-      ) : properties.length === 0 ? (
-        <p className="empty">登録された物件はまだありません。</p>
-      ) : (
-        <ul className="property-grid">
-          {properties.map((property) => (
-            <li key={property.id} className="property-card">
-              <div className="card-title">
+        {error && <p className="error page-error">{error}</p>}
+
+        {loading ? (
+          <p className="loading">読み込み中...</p>
+        ) : properties.length === 0 ? (
+          <div className="empty">
+            <p>登録された物件はまだありません。</p>
+            <p className="empty-sub">「＋ 新規登録」から最初の物件を追加しましょう。</p>
+          </div>
+        ) : (
+          <ul className="property-grid">
+            {properties.map((property) => (
+              <li key={property.id} className="property-card">
+                <div className="card-head">
+                  <p className="area">{property.area}</p>
+                  <span className="layout-badge">{property.layout}</span>
+                </div>
                 <h2>{property.name}</h2>
-                <span className="layout-badge">{property.layout}</span>
-              </div>
-              <p className="rent">
-                {/* 家賃を3桁区切りで表示する */}
-                {property.rent.toLocaleString('ja-JP')}
-                <span>円/月</span>
-              </p>
-              <p className="area">{property.area}</p>
-              <div className="card-actions">
-                <button className="secondary-button" onClick={() => setFormTarget(property)}>
-                  編集
-                </button>
-                <button className="danger-button" onClick={() => handleDelete(property)}>
-                  削除
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+                <p className="rent">
+                  {/* 家賃を3桁区切りで表示する */}
+                  <span className="rent-value">{property.rent.toLocaleString('ja-JP')}</span>
+                  <span className="rent-unit">円 / 月</span>
+                </p>
+                <div className="card-actions">
+                  <button className="text-button" onClick={() => setFormTarget(property)}>
+                    編集
+                  </button>
+                  <button className="text-button danger" onClick={() => handleDelete(property)}>
+                    削除
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </main>
     </div>
   )
 }
